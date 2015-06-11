@@ -22,3 +22,17 @@ type User struct {
 	Comments          []string `json:"comments"`          //
 	Memo              []string `json:"memo"`              //
 }
+
+func (user *User) Has(username string) (bool, string, error) {
+	UUID, err := GetUUID("user", username)
+	if err != nil {
+		return false, "", err
+	}
+
+	if len(UUID) <= 0 {
+		return false, "", nil
+	}
+
+	err = Get(user, UUID)
+	return true, UUID, err
+}
