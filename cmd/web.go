@@ -44,7 +44,7 @@ func runWeb(c *cli.Context) {
 	}
 
 	//Set Macaron Web Middleware And Routers
-	web.SetSailsMacaron(m)
+	web.SetCrewMacaron(m)
 
 	switch setting.ListenMode {
 	case "http":

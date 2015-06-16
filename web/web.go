@@ -7,7 +7,7 @@ import (
 	"github.com/containerops/crew/router"
 )
 
-func SetSailsMacaron(m *macaron.Macaron) {
+func SetCrewMacaron(m *macaron.Macaron) {
 	//Setting Middleware
 	middleware.SetMiddlewares(m)
 	//Setting Router
