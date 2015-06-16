@@ -2,9 +2,8 @@ package models
 
 import (
 	"fmt"
-	"time"
-
 	"github.com/containerops/wrench/db"
+	"time"
 )
 
 type Repository struct {
@@ -119,6 +118,72 @@ func (r *Repository) Put(namespace, repository, json, agent string, version int6
 	r.Size, r.Download = 0, 0
 
 	if err := r.Save(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (r *Repository) PutImages(namespace, repository string) error {
+	if has, _, err := r.Has(namespace, repository); err != nil {
+		return err
+	} else if has == false {
+		return fmt.Errorf("Repository not found")
+	}
+
+	r.Checksumed, r.Uploaded, r.Updated = true, true, time.Now().Unix()
+
+	if err := r.Save(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (r *Repository) PutTag(imageId, namespace, repository, tag string) error {
+	if has, _, err := r.Has(namespace, repository); err != nil {
+		return err
+	} else if has == false {
+		return fmt.Errorf("Repository not found")
+	}
+
+	image := new(Image)
+	if has, _, err := image.Has(imageId); err != nil {
+		return err
+	} else if has == false {
+		return fmt.Errorf("Tag's image not found")
+	}
+
+	t := new(Tag)
+	t.UUID = string(fmt.Sprintf("%s:%s:%s", namespace, repository, tag))
+	t.Name, t.ImageId, t.Namespace, t.Repository = tag, imageId, namespace, repository
+
+	if err := t.Save(); err != nil {
+		return err
+	}
+
+	has := false
+	for _, value := range r.Tags {
+		if value == t.UUID {
+			has = true
+		}
+	}
+	if !has {
+		r.Tags = append(r.Tags, t.UUID)
+	}
+	if err := r.Save(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (t *Tag) Save() error {
+	if err := Save(t, t.UUID); err != nil {
+		return err
+	}
+
+	if _, err := db.Client.HSet(db.GLOBAL_TAG_INDEX, (fmt.Sprintf("%s:%s:%s:%s", t.Namespace, t.Repository, t.ImageId, t.Name)), t.UUID).Result(); err != nil {
 		return err
 	}
 
