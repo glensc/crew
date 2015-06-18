@@ -17,7 +17,7 @@ type Organization struct {
 }
 
 func (organization *Organization) Has(organizationName string) (bool, string, error) {
-	UUID, err := GetUUID("organization", organizationName)
+	UUID, err := db.GetUUID("organization", organizationName)
 	if err != nil {
 		return false, "", err
 	}
@@ -25,13 +25,13 @@ func (organization *Organization) Has(organizationName string) (bool, string, er
 		return false, "", nil
 	}
 
-	err = Get(organization, UUID)
+	err = db.Get(organization, UUID)
 
 	return true, UUID, err
 }
 
 func (organization *Organization) Save() error {
-	if err := Save(organization, organization.Id); err != nil {
+	if err := db.Save(organization, organization.Id); err != nil {
 		return err
 	}
 
