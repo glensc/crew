@@ -23,11 +23,6 @@ var (
 	DBDB          int64
 )
 
-const (
-	APIVERSION_V1 = iota
-	APIVERSION_V2
-)
-
 func init() {
 	var err error
 

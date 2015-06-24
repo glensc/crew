@@ -30,7 +30,7 @@ type User struct {
 }
 
 func (user *User) Has(username string) (bool, string, error) {
-	UUID, err := GetUUID("user", username)
+	UUID, err := db.GetUUID("user", username)
 	if err != nil {
 		return false, "", err
 	}
@@ -39,7 +39,7 @@ func (user *User) Has(username string) (bool, string, error) {
 		return false, "", nil
 	}
 
-	err = Get(user, UUID)
+	err = db.Get(user, UUID)
 	return true, UUID, err
 }
 
@@ -58,7 +58,7 @@ func (user *User) Save() error {
 		return fmt.Errorf("Email illegal")
 	}
 
-	if err := Save(user, user.Id); err != nil {
+	if err := db.Save(user, user.Id); err != nil {
 		return err
 	}
 
