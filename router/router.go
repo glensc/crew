@@ -10,44 +10,46 @@ func SetRouters(m *macaron.Macaron) {
 	//Crew User And Organization V1 API
 
 	m.Group("/w1", func() {
-		//Signin and Signup
-		m.Post("/signup", handler.W1Signup)
-		m.Post("/signin", handler.W1Signin)
-
 		//User Router
 		m.Group("/user", func() {
+			//Signin and Signup
+			m.Post("/", handler.W1UserSignup)
+			m.Post("/auth", handler.W1UserSignin)
+			//List All Users
 			m.Get("/list", handler.W1GetUserList)
-			m.Put("/:userKey/profile", handler.W1PutUserProfile)
-			m.Get("/:userKey/profile", handler.W1GetUserProfile)
-			m.Post("/:userKey/gravatar", handler.W1PostUserGravatar)
-			m.Put("/:userKey/passwd", handler.W1PutUserPasswd)
-			m.Get("/:userKey/organizations", handler.W1GetUserOrganizations)
-			m.Get("/:userKey/teams", handler.W1GetUserTeams)
+			//Profile
+			m.Put("/:user/profile", handler.W1PutUserProfile)
+			m.Get("/:user/profile", handler.W1GetUserProfile)
+			m.Post("/:user/gravatar", handler.W1PostUserGravatar)
+			//Put Password
+			m.Put("/:user/passwd", handler.W1PutUserPasswd)
+			//List User Teams and Organizations
+			m.Get("/:user/organizations", handler.W1GetUserOrganizations)
+			m.Get("/:user/teams", handler.W1GetUserTeams)
 		})
 
 		//Organization Router
 		m.Group("/org", func() {
 			m.Post("/", handler.W1PostOrganization)
-			m.Put("/:orgKey", handler.W1PutOrganization)
-			m.Get("/:orgKey", handler.W1GetOrganization)
-			m.Delete("/:orgKey", handler.W1DeleteOrganization)
+			m.Put("/:org", handler.W1PutOrganization)
+			m.Get("/:org", handler.W1GetOrganization)
+			m.Delete("/:org", handler.W1DeleteOrganization)
 
 			//Team Router
-			m.Group("/:orgKey/team", func() {
+			m.Group("/:org/team", func() {
 				m.Post("/", handler.W1PostTeam)
 				m.Get("/list", handler.W1GetTeams)
-				m.Put("/:teamKey", handler.W1PutTeam)
-				m.Get("/:teamKey", handler.W1GetTeam)
-				m.Delete("/:teamKey", handler.W1DeleteTeam)
+				m.Put("/:team", handler.W1PutTeam)
+				m.Get("/:team", handler.W1GetTeam)
+				m.Delete("/:team", handler.W1DeleteTeam)
 
 				//User Management
-				m.Group("/:teamKey/user", func() {
+				m.Group("/:team/user", func() {
 					m.Get("/list", handler.W1GetTeamUsers)
-					m.Put("/:userKey", handler.W1PutTeamUser)
-					m.Delete("/:userKey", handler.W1DeleteTeamUser)
+					m.Put("/:user", handler.W1PutTeamUser)
+					m.Delete("/:user", handler.W1DeleteTeamUser)
 				})
 			})
 		})
-
 	})
 }
