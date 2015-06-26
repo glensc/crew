@@ -21,6 +21,8 @@ func SetRouters(m *macaron.Macaron) {
 			m.Get("/:userKey/profile", handler.W1GetUserProfile)
 			m.Post("/:userKey/gravatar", handler.W1PostUserGravatar)
 			m.Put("/:userKey/passwd", handler.W1PutUserPasswd)
+			m.Get("/:userKey/organizations", handler.W1GetUserOrganizations)
+			m.Get("/:userKey/teams", handler.W1GetUserTeams)
 		})
 
 		//Organization Router

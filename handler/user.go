@@ -27,3 +27,11 @@ func W1PostUserGravatar(ctx *macaron.Context, log *logs.BeeLogger) (int, []byte)
 func W1PutUserPasswd(ctx *macaron.Context, log *logs.BeeLogger) (int, []byte) {
 	return http.StatusOK, []byte{}
 }
+
+func W1GetUserOrganizations(ctx *macaron.Context, log *logs.BeeLogger) (int, []byte) {
+	return http.StatusOK, []byte{}
+}
+
+func W1GetUserTeams(ctx *macaron.Context, log *logs.BeeLogger) (int, []byte) {
+	return http.StatusOK, []byte{}
+}
