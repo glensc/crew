@@ -31,8 +31,19 @@ func SetRouters(m *macaron.Macaron) {
 			m.Delete("/:orgKey", handler.W1DeleteOrganization)
 
 			//Team Router
-			m.Group("/team", func() {
+			m.Group("/:orgKey/team", func() {
+				m.Post("/", handler.W1PostTeam)
+				m.Get("/list", handler.W1GetTeams)
+				m.Put("/:teamKey", handler.W1PutTeam)
+				m.Get("/:teamKey", handler.W1GetTeam)
+				m.Delete("/:teamKey", handler.W1DeleteTeam)
 
+				//User Management
+				m.Group("/:teamKey/user", func() {
+					m.Get("/list", handler.W1GetTeamUsers)
+					m.Put("/:userKey", handler.W1PutTeamUser)
+					m.Delete("/:userKey", handler.W1DeleteTeamUser)
+				})
 			})
 		})
 
