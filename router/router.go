@@ -14,7 +14,7 @@ func SetRouters(m *macaron.Macaron) {
 		m.Post("/signup", handler.W1Signup)
 		m.Post("/signin", handler.W1Signin)
 
-		//User List
+		//User Router
 		m.Group("/user", func() {
 			m.Get("/list", handler.W1GetUserList)
 			m.Put("/:userKey/profile", handler.W1PutUserProfile)
@@ -22,5 +22,19 @@ func SetRouters(m *macaron.Macaron) {
 			m.Post("/:userKey/gravatar", handler.W1PostUserGravatar)
 			m.Put("/:userKey/passwd", handler.W1PutUserPasswd)
 		})
+
+		//Organization Router
+		m.Group("/org", func() {
+			m.Post("/", handler.W1PostOrganization)
+			m.Put("/:orgKey", handler.W1PutOrganization)
+			m.Get("/:orgKey", handler.W1GetOrganization)
+			m.Delete("/:orgKey", handler.W1DeleteOrganization)
+
+			//Team Router
+			m.Group("/team", func() {
+
+			})
+		})
+
 	})
 }
