@@ -11,3 +11,7 @@ import (
 func W1Signup(ctx *macaron.Context, log *logs.BeeLogger) (int, []byte) {
 	return http.StatusOK, []byte{}
 }
+
+func W1Signin(ctx *macaron.Context, log *logs.BeeLogger) (int, []byte) {
+	return http.StatusOK, []byte{}
+}
