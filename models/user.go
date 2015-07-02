@@ -2,8 +2,9 @@ package models
 
 import (
 	"fmt"
-	"github.com/containerops/wrench/db"
 	"regexp"
+
+	"github.com/containerops/wrench/db"
 )
 
 type User struct {

@@ -19,7 +19,7 @@ type Organization struct {
 func (organization *Organization) Has(organizationName string) (bool, string, error) {
 	UUID, err := db.GetUUID("organization", organizationName)
 	if err != nil {
-		return false, "", err
+		return false, "", nil
 	}
 	if len(UUID) <= 0 {
 		return false, "", nil
