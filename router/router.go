@@ -3,6 +3,8 @@ package router
 import (
 	"github.com/Unknwon/macaron"
 
+	"github.com/macaron-contrib/binding"
+
 	"github.com/containerops/crew/handler"
 )
 
@@ -10,10 +12,15 @@ func SetRouters(m *macaron.Macaron) {
 	//Crew User And Organization V1 API
 
 	m.Group("/w1", func() {
+		//Session Router
+		m.Group("/token", func() {
+			m.Post("/", handler.W1PostToken)
+		})
+
 		//User Router
 		m.Group("/user", func() {
 			//Signin and Signup
-			m.Post("/", handler.W1UserSignup)
+			m.Post("/", binding.Bind(handler.UserSignup{}), handler.W1UserSignup)
 			m.Post("/auth", handler.W1UserSignin)
 			//List All Users
 			m.Get("/list", handler.W1GetUserList)

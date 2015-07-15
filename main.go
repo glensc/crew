@@ -1,13 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"runtime"
 
 	"github.com/codegangsta/cli"
 
 	"github.com/containerops/crew/cmd"
-	"github.com/containerops/crew/setting"
+	"github.com/containerops/wrench/setting"
 )
 
 func init() {
@@ -15,6 +16,13 @@ func init() {
 }
 
 func main() {
+
+	//Init Config
+	if err := setting.SetConfig("conf/containerops.conf"); err != nil {
+		fmt.Println("Setting config value error: %s", err.Error())
+		os.Exit(1)
+	}
+
 	app := cli.NewApp()
 
 	app.Name = setting.AppName
