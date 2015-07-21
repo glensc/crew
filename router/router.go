@@ -9,7 +9,7 @@ import (
 )
 
 func SetRouters(m *macaron.Macaron) {
-	m.Group("/w1", func() {
+	m.Group("/v1", func() {
 		//Session Router
 		m.Group("/token", func() {
 			m.Post("/", handler.W1PostToken)
