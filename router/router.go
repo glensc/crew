@@ -21,7 +21,7 @@ func SetRouters(m *macaron.Macaron) {
 			m.Post("/", binding.Bind(handler.UserSignup{}), handler.W1UserSignup)
 			m.Post("/auth", handler.W1UserSignin)
 			//List All Users
-			m.Get("/list", handler.W1GetUserList)
+			m.Get("/list/:count/:page", handler.W1GetUserList)
 			//Profile
 			m.Put("/:user/profile", handler.W1PutUserProfile)
 			m.Get("/:user/profile", handler.W1GetUserProfile)
