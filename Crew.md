@@ -13,7 +13,7 @@ Get a *JWT*([JSON Web Token](https://tools.ietf.org/html/draft-ietf-oauth-json-w
 - *account* - The name of the account which the client is acting as. Optional if page without signin with page grant type. 
 - *grant* - The type of client, like web page, docker client or rkt client and so on.
 
-#### Request 
+#### Request Example
 
 ```                                                                                                   
 POST /v1/token                                                                                         
@@ -29,13 +29,115 @@ Content-Type: application/json
 }
 ```
 
-#### Response
+#### Response Example
 
 ```
 HTTP/1.1 201 
 Content-Type: application/json
 
-{"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IlBZWU86VEVXVTpWN0pIOjI2SlY6QVFUWjpMSkMzOlNYVko6WEdIQTozNEYyOjJMQVE6WlJNSzpaN1E2In0.eyJpc3MiOiJhdXRoLmRvY2tlci5jb20iLCJzdWIiOiJqbGhhd24iLCJhdWQiOiJyZWdpc3RyeS5kb2NrZXIuY29tIiwiZXhwIjoxNDE1Mzg3MzE1LCJuYmYiOjE0MTUzODcwMTUsImlhdCI6MTQxNTM4NzAxNSwianRpIjoidFlKQ08xYzZjbnl5N2tBbjBjN3JLUGdiVjFIMWJGd3MiLCJhY2Nlc3MiOlt7InR5cGUiOiJyZXBvc2l0b3J5IiwibmFtZSI6InNhbWFsYmEvbXktYXBwIiwiYWN0aW9ucyI6WyJwdXNoIl19XX0.QhflHPfbd6eVF4lM9bwYpFZIV0PfikbyXuLx959ykRTBpe3CYnzs6YBK8FToVb5R47920PVLrh8zuLzdCr9t3w"}
+{"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IlBZWU86VEVXVTpWN0pIOjI2SlY6QVFUWjpMSkMzOlNYVk"}
 ```
 
 - *token* - A signed token.
+
+#### HTTP Status Code
+
+- *201* -
+- *400* -
+- *500* -
+
+### Create An User
+
+`POST /v1/user`
+
+Sign up with a user account.
+
+#### Parameters
+
+- *username* - The name of the user, must match the regular expression `[a-z0-9]+(?:[._-][a-z0-9]+)*`
+- *email* - the email address of user.
+- *passwd* - the password of the user.
+
+#### Request Example
+
+```                                                                                                   
+POST /v1/user
+HOST: containerops.me                                                                             
+Accept: application/json                                                                              
+Content-Type: application/json                                                                        
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IlBZWU86VEVXVTpWN0pIOjI2SlY6QVFUWjpMSkMzOlNYVk
+
+{
+  "username": "genedna",
+  "email": "genedna@gmail.com",
+  "passwd": "genednarandompassword"
+}
+```
+
+#### Response Example
+
+```
+HTTP/1.1 201 
+Content-Type: application/json
+
+```
+
+#### HTTP Status Code
+
+- *201* -
+- *400* -
+- *500* -
+
+### User Sign In 
+
+`POST /v1/user/auth`
+
+User sign in the system from web page.
+
+#### Parameters
+
+- *username* - The name of the user, must match the regular expression `[a-z0-9]+(?:[._-][a-z0-9]+)*`
+- *email* - the email address of user.
+
+#### Request Example
+
+```
+POST /v1/user/auth
+HOST: containerops.me                                                                             
+Accept: application/json                                                                              
+Content-Type: application/json                                                                        
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IlBZWU86VEVXVTpWN0pIOjI2SlY6QVFUWjpMSkMzOlNYVk
+
+{
+  "email": "genedna@gmail.com",
+  "passwd": "genednarandompassword"
+}
+```
+
+#### Response Example
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+
+{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IlBZWU86VEVXVTpWN0pIOjI2SlY6Q"}
+```
+
+When sign in the system successfully, and will return a new token value for the user
+
+#### HTTP Status Code
+
+- *200* -
+- *400* -
+- *500* -
+
+### Get users list 
+
+`GET /v1/user/list/:count/:page`
+
+Get users of system with count and page parameters.
+
+#### Parameters
+
+- *count* - Amount users from service per request.   
+- *page* - The page index which start with 0. 
