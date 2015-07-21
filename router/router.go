@@ -9,8 +9,6 @@ import (
 )
 
 func SetRouters(m *macaron.Macaron) {
-	//Crew User And Organization V1 API
-
 	m.Group("/w1", func() {
 		//Session Router
 		m.Group("/token", func() {
