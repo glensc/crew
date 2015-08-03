@@ -17,15 +17,13 @@ type Organization struct {
 }
 
 func (organization *Organization) Has(organizationName string) (bool, string, error) {
-	UUID, err := db.GetUUID("organization", organizationName)
-	if err != nil {
-		return false, "", nil
-	}
+	UUID := db.Key("organization", organizationName)
+
 	if len(UUID) <= 0 {
 		return false, "", nil
 	}
 
-	err = db.Get(organization, UUID)
+	err := db.Get(organization, UUID)
 
 	return true, UUID, err
 }
