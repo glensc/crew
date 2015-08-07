@@ -31,16 +31,13 @@ type User struct {
 }
 
 func (user *User) Has(username string) (bool, string, error) {
-	UUID, err := db.GetUUID("user", username)
-	if err != nil {
-		return false, "", err
-	}
+	UUID := db.Key("user", username)
 
 	if len(UUID) <= 0 {
 		return false, "", nil
 	}
 
-	err = db.Get(user, UUID)
+	err := db.Get(user, UUID)
 	return true, UUID, err
 }
 
