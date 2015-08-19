@@ -141,3 +141,117 @@ Get users of system with count and page parameters.
 
 - *count* - Amount users from service per request.   
 - *page* - The page index which start with 0. 
+
+#### Request Example
+
+```
+GET /v1/user/list/30/0
+HOST: containerops.me                                                                             
+Accept: application/json                                                                              
+Content-Type: application/json                                                                        
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IlBZWU86VEVXVTpWN0pIOjI2SlY6QVFUWjpMSkMzOlNYVk
+```
+
+#### Response Example
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+
+```
+
+#### HTTP Status Code
+
+- *200* -
+- *400* -
+- *500* -
+
+### PUT User Profile
+
+`PUT /v1/user/:user/profile`
+
+Set user's profile data.
+
+#### Parameters
+
+- *user* - User's username
+
+#### Request Example
+
+```
+PUT /v1/user/containerme/profile
+HOST: containerops.me                                                                             
+Accept: application/json                                                                              
+Content-Type: application/json                                                                        
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IlBZWU86VEVXVTpWN0pIOjI2SlY6QVFUWjpMSkMzOlNYVk
+
+{
+  "username": "containerme",
+  "email": "genedna@gmail.com",
+  "fullname": "Meaglith Ma",
+  "company": "",
+  "location": "Beijing, China",
+  "mobile": "+86186xxxxxxxx",
+  "url": "https://containerops.me",
+  "gravatar": "https://containerops.me/profiles/containeropsme/gravatar.png"
+}
+```
+
+#### Response Example
+```
+HTTP/1.1 200
+Content-Type: application/json
+
+```
+
+#### HTTP Status Code
+
+- *200* -
+- *400* -
+- *500* -
+
+### Get User Profile
+
+`GET /v1/user/containerme/profile`
+
+Get user's profile data.
+
+#### Parameters
+
+- *user* - User's username
+
+#### Request Example
+
+```
+GET /v1/user/containerme/profile
+HOST: containerops.me                                                                             
+Accept: application/json                                                                              
+Content-Type: application/json                                                                        
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IlBZWU86VEVXVTpWN0pIOjI2SlY6QVFUWjpMSkMzOlNYVk
+```
+
+#### Response Example
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+
+{
+  "username": "containerme",
+  "email": "genedna@gmail.com",
+  "fullname": "Meaglith Ma",
+  "company": "",
+  "location": "Beijing, China",
+  "mobile": "+86186xxxxxxxx",
+  "url": "https://containerops.me",
+  "gravatar": "https://containerops.me/profiles/containeropsme/gravatar.png"
+}
+```
+
+#### HTTP Status Code
+
+- *200* -
+- *400* -
+- *500* -
+
+
