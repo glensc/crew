@@ -3,8 +3,8 @@ package handler
 import (
 	"net/http"
 
-	"github.com/Unknwon/macaron"
 	"github.com/macaron-contrib/binding"
+	"gopkg.in/macaron.v1"
 
 	"github.com/astaxie/beego/logs"
 
