@@ -1,9 +1,8 @@
 package router
 
 import (
+	"github.com/go-macaron/binding"
 	"gopkg.in/macaron.v1"
-
-	"github.com/macaron-contrib/binding"
 
 	"github.com/containerops/crew/handler"
 )

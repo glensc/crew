@@ -7,13 +7,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/codegangsta/cli"
+	"github.com/urfave/cli"
 	"gopkg.in/macaron.v1"
 
+	"github.com/containerops/crew/utils"
 	"github.com/containerops/crew/web"
-	"github.com/containerops/wrench/db"
-	"github.com/containerops/wrench/setting"
-	"github.com/containerops/wrench/utils"
 )
 
 var CmdWeb = cli.Command{
