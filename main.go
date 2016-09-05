@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/urfave/cli"
 
 	"github.com/containerops/crew/cmd"

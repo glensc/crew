@@ -10,10 +10,12 @@ import (
 	"github.com/urfave/cli"
 	"gopkg.in/macaron.v1"
 
+	"github.com/containerops/crew/setting"
 	"github.com/containerops/crew/utils"
 	"github.com/containerops/crew/web"
 )
 
+//CmdWeb is
 var CmdWeb = cli.Command{
 	Name:        "web",
 	Usage:       "start crew web service",
@@ -36,10 +38,6 @@ var CmdWeb = cli.Command{
 func runWeb(c *cli.Context) {
 	m := macaron.New()
 
-	if err := db.InitDB(setting.DBURI, setting.DBPasswd, setting.DBDB); err != nil {
-		fmt.Printf("Connect Database Error %s", err.Error())
-	}
-
 	//Set Macaron Web Middleware And Routers
 	web.SetCrewMacaron(m)
 
@@ -53,7 +51,7 @@ func runWeb(c *cli.Context) {
 	case "https":
 		listenaddr := fmt.Sprintf("%s:443", c.String("address"))
 		server := &http.Server{Addr: listenaddr, TLSConfig: &tls.Config{MinVersion: tls.VersionTLS10}, Handler: m}
-		if err := server.ListenAndServeTLS(setting.HttpsCertFile, setting.HttpsKeyFile); err != nil {
+		if err := server.ListenAndServeTLS(setting.HTTPSCertFile, setting.HTTPSKeyFile); err != nil {
 			fmt.Printf("start crew https service error: %v", err.Error())
 		}
 		break
