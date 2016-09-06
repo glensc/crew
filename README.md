@@ -14,9 +14,13 @@ httpscertfile = cert/containerops/containerops.crt
 httpskeyfile = cert/containerops/containerops.key
 
 [log]
-filepath = log/containerops-log
+filepath = log/backend.log
+level = info
 
-[db]
-uri = localhost:6379
-db = 8
+[database]
+driver = mysql
+uri = containerops:containerops@/containerops?charset=utf8&parseTime=True&loc=Asia%2FShanghai
+
+[deployment]
+domains = containerops.me
 ```
