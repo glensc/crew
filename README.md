@@ -3,7 +3,6 @@
 
 # containerops.conf 
 
-`containerops.conf` already add to vcs and all modules will share the same version.
 
 # Runtime Conf File Example
 

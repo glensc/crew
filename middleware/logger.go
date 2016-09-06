@@ -6,7 +6,7 @@ import (
 	log "github.com/Sirupsen/logrus"
 	"gopkg.in/macaron.v1"
 
-	"github.com/containerops/dockyard/setting"
+	"github.com/containerops/crew/setting"
 )
 
 func logger() macaron.Handler {
