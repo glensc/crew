@@ -19,7 +19,7 @@ import (
 var CmdWeb = cli.Command{
 	Name:        "web",
 	Usage:       "start crew web service",
-	Description: "crew is the module of handler docker repository and rkt image.",
+	Description: "crew is the module of ContainerOps for RABC controlling.",
 	Action:      runWeb,
 	Flags: []cli.Flag{
 		cli.StringFlag{
