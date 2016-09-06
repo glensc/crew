@@ -1,6 +1,8 @@
 # Usre And Organization Management Of ContainerOps
 ![Crew](docs/crew.jpg "Crew")
 
+Crew is a REST API service integrating user and organization management, GPG & SSH keys management, OpenID connect identity(OIDC), OAuth 2.0 provider and RABC management.
+
 # containerops.conf 
 
 
