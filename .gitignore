@@ -22,3 +22,7 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+crew
+conf/runtime.conf
+log/*
