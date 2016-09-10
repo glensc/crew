@@ -70,3 +70,63 @@ func DeleteUserEmailsV1Handler(ctx *macaron.Context) (int, []byte) {
 	result, _ := json.Marshal(map[string]string{})
 	return http.StatusOK, result
 }
+
+//GetUserSSHKeysV1Handler is a handler function of getting SSH keys of a user.
+func GetUserSSHKeysV1Handler(ctx *macaron.Context) (int, []byte) {
+	result, _ := json.Marshal(map[string]string{})
+	return http.StatusOK, result
+}
+
+//GetUserSSHKeyV1Handler is a handler function of getting a SSH key of a user.
+func GetUserSSHKeyV1Handler(ctx *macaron.Context) (int, []byte) {
+	result, _ := json.Marshal(map[string]string{})
+	return http.StatusOK, result
+}
+
+//PostUserSSHKeyV1Handler is a handler function of creating a SSH key of a user.
+func PostUserSSHKeyV1Handler(ctx *macaron.Context) (int, []byte) {
+	result, _ := json.Marshal(map[string]string{})
+	return http.StatusOK, result
+}
+
+//DeleteUserSSHKeyV1Handler is a handler function of deleting a SSH key of a user.
+func DeleteUserSSHKeyV1Handler(ctx *macaron.Context) (int, []byte) {
+	result, _ := json.Marshal(map[string]string{})
+	return http.StatusOK, result
+}
+
+//GetUserGPGKeysV1Handler is a handler function of getting GPG keys of a user.
+func GetUserGPGKeysV1Handler(ctx *macaron.Context) (int, []byte) {
+	result, _ := json.Marshal(map[string]string{})
+	return http.StatusOK, result
+}
+
+//GetUserGPGKeyV1Handler is a handler function of getting a GPG key of a user.
+func GetUserGPGKeyV1Handler(ctx *macaron.Context) (int, []byte) {
+	result, _ := json.Marshal(map[string]string{})
+	return http.StatusOK, result
+}
+
+//PostUserGPGKeyV1Handler is a handler function of creating a GPG key of a user.
+func PostUserGPGKeyV1Handler(ctx *macaron.Context) (int, []byte) {
+	result, _ := json.Marshal(map[string]string{})
+	return http.StatusOK, result
+}
+
+//DeleteUserGPGKeyV1Handler is a handler function of deleting a GPG key of a user.
+func DeleteUserGPGKeyV1Handler(ctx *macaron.Context) (int, []byte) {
+	result, _ := json.Marshal(map[string]string{})
+	return http.StatusOK, result
+}
+
+//GetUserTeamsV1Handler is a handler functoin of listing teams of a user.
+func GetUserTeamsV1Handler(ctx *macaron.Context) (int, []byte) {
+	result, _ := json.Marshal(map[string]string{})
+	return http.StatusOK, result
+}
+
+//GetUserOrgsV1Handler is a handler function of listing orgs of a user.
+func GetUserOrgsV1Handler(ctx *macaron.Context) (int, []byte) {
+	result, _ := json.Marshal(map[string]string{})
+	return http.StatusOK, result
+}
